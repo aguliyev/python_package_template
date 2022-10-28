@@ -1,3 +1,9 @@
 setuptools
-pytest
 build
+pytest
+mypy
+pylint
+black
+isort
+coverage
+flake8
