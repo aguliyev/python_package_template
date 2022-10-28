@@ -8,4 +8,4 @@ RUN pip install -r requirements.txt
 
 COPY . .
 
-CMD python setup.py sdist bdist_wheel
+CMD python -m build
