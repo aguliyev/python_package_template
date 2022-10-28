@@ -6,7 +6,7 @@ build:
 
 .PHONY: test
 test:
-	docker run -v `pwd`:/app -it python_package_template /bin/sh -c "isort --check . ; black --extend-exclude=notebooks . ; mypy python_package_template ; flake8 ; pytest "
+	docker run -v `pwd`:/app -it python_package_template /bin/sh -c "isort --check . ; black --extend-exclude=docs . ; mypy python_package_template ; flake8 ; pytest "
 
 .PHONY: publish
 publish:
@@ -16,7 +16,7 @@ publish:
 jupyter:
 	docker run --rm -p 8888:8888 -e JUPYTER_ENABLE_LAB=yes \
 	    --name python_package_template_jupyter \
-	    -v "$(shell pwd)/notebooks":/home/jovyan/work \
+	    -v "$(shell pwd)/docs/notebooks":/home/jovyan/work \
 	    -v "$(shell pwd)":/home/jovyan/python_package_template \
 	    jupyter/datascience-notebook
 
