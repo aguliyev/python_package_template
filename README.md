@@ -8,6 +8,10 @@ Make commands:
 
     make publish
 
-    make shell
+You can also play with your package in Jupyter notebook:
 
     make jupyter
+
+and also, can bash into the running container:
+
+    make shell
