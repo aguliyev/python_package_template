@@ -6,7 +6,7 @@ build:
 
 .PHONY: test
 test:
-	docker run -v `pwd`:/app -it python_package_template /bin/sh -c "isort --check . ; black --extend-exclude=docs . ; mypy python_package_template ; flake8 ; pytest "
+	docker run -v `pwd`:/app -it translucent /bin/sh -c "isort --check . ; black --extend-exclude=docs . ; mypy translucent ; flake8 python_package_template tests ; pytest "
 
 .PHONY: publish
 publish:
