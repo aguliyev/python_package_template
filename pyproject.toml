@@ -2,7 +2,7 @@
 name = "python_package_template"
 version = "0.0.1"
 authors = [
-  { name="Anar Guliyev", email="anar@trialspark.com" },
+  { name="Anar Guliyev", email=".." },
 ]
 description = "A template for python packages"
 readme = "README.md"
@@ -14,7 +14,7 @@ classifiers = [
 ]
 
 [project.urls]
-"Homepage" = "https://github.com/trialspark/python_package_template"
+"Homepage" = "https://github.com/aguliyev/python_package_template"
 
 [build-system]
 requires = ["setuptools"]
