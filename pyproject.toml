@@ -2,7 +2,7 @@
 name = "python_package_template"
 version = "0.0.1"
 authors = [
-  { name="Anar Guliyev", email=".." },
+  { name="Anar Guliyev", email="anar@trialspark.com" },
 ]
 description = "A template for python packages"
 readme = "README.md"
@@ -12,6 +12,7 @@ classifiers = [
     "License :: Other/Proprietary License",
     "Operating System :: OS Independent",
 ]
+dependencies = []
 
 [project.urls]
 "Homepage" = "https://github.com/aguliyev/python_package_template"
@@ -19,3 +20,6 @@ classifiers = [
 [build-system]
 requires = ["setuptools"]
 build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+packages = ["python_package_template"]
