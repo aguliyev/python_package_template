@@ -8,4 +8,4 @@ RUN pip install -r requirements.txt
 
 COPY . .
 
-CMD python -m build
+ENTRYPOINT "/app/etc/entrypoint.sh"

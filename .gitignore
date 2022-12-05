@@ -104,6 +104,8 @@ celerybeat.pid
 
 # Environments
 .env
+!etc/dev/.env
+!etc/test/.env
 secrets.env
 .venv
 env/
