@@ -7,3 +7,4 @@ black
 isort
 coverage
 flake8
+flake8-functions
