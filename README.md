@@ -1,5 +1,11 @@
 # python_package_template
 
+- Testing
+- Typing, linting, formatting etc
+- Dockerization
+- Dependency management
+- Environment variables passing to containers
+
 Make commands:
 
     make test
