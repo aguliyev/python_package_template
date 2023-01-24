@@ -1,0 +1,6 @@
+[flake8]
+max-line-length = 120
+max-function-length = 19
+max-parameters-amount = 16
+max-returns-amount = 8
+max-complexity = 8
