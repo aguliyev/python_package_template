@@ -13,7 +13,7 @@ publish:
 
 .PHONY: jupyter
 jupyter:
-	docker run --rm -p 8888:8888 -e JUPYTER_ENABLE_LAB=yes \
+	docker run --rm -p 8888:8888 -e JUPYTER_ENABLE_LAB=yes -e JUPYTER_TOKEN=123 \
 	    --name python_package_template_jupyter \
 	    -v "$(shell pwd)/docs/notebooks":/home/jovyan/work \
 	    -v "$(shell pwd)":/home/jovyan/python_package_template \

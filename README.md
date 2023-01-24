@@ -18,6 +18,8 @@ You can also play with your package in Jupyter notebook:
 
     make jupyter
 
-and also, can bash into the running container:
+Notebooks UI: http://127.0.0.1:8888/lab/tree/work?token=123 (the token is set in environment variable)
+
+also, you can shell into the running container:
 
     make shell
