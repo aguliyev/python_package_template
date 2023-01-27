@@ -5,4 +5,4 @@ omit =
 
 [report]
 exclude_lines =
-    ...
+    pass
