@@ -7,6 +7,10 @@ build:
 test:
 	docker run --env-file ./etc/test/.env -v `pwd`:/app -it python_package_template
 
+.PHONY: coverage
+coverage:
+	docker run --env-file ./etc/test/.env -e COVERAGE_REPORT=1 -v `pwd`:/app -it python_package_template
+
 .PHONY: publish
 publish:
 	echo "TODO publish to pypi, artifact repo"

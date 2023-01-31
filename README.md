@@ -8,9 +8,11 @@
 
 Make commands:
 
+    make build
+
     make test
 
-    make build
+    make coverage
 
     make publish
 
