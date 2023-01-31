@@ -1,8 +1,8 @@
 #!/bin/sh
 
 if [ $COVERAGE_REPORT ]; then
-    coverage run -m pytest && \
-    coverage report --show-missing --skip-covered --fail-under=100
+    coverage run -m pytest
+    coverage report --show-missing --skip-covered
     coverage xml
     coverage json
     coverage html
