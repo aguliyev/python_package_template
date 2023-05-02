@@ -2,7 +2,7 @@
 name = "python_package_template"
 version = "0.0.1"
 authors = [
-  { name="Anar Guliyev", email="anar@trialspark.com" },
+  { name="Anar Guliyev", email="anar@guliyev.us" },
 ]
 description = "A template for python packages"
 readme = "README.md"
