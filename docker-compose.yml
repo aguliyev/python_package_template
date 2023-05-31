@@ -1,0 +1,54 @@
+version: "3.7"
+
+networks:
+  python_package_template_network:
+
+services:
+
+  python_package_template:
+    image: trialspark/python_package_template:${IMAGE_VERSION}
+    container_name: python_package_template
+    build:
+      context: .
+      dockerfile: package.Dockerfile
+      args:
+        - PIP_PARAMS=${PIP_PARAMS}
+        - ENV_NAME
+        - AWS_CODEARTIFACT_AUTH_TOKEN
+    networks:
+      - python_package_template_network
+    volumes:
+      - type: bind
+        source: .
+        target: /app
+    env_file:
+      - etc/${ENV_NAME}/.env
+
+  python_package_template_jupyter:
+    image: trialspark/python_package_template_jupyter
+    container_name: python_package_template_jupyter
+    build:
+      context: .
+      dockerfile: jupyter.Dockerfile
+      args:
+        - PIP_PARAMS=${PIP_PARAMS}
+    ports:
+      - ${JUPYTER_PORT_ON_HOST}:${JUPYTER_PORT}
+    networks:
+      - python_package_template_network
+    volumes:
+      - ./docs/notebooks:/home/jovyan/work
+      - .:/home/jovyan/python_package_template
+      - ./tmp:/tmp
+    environment:
+      - ENV_NAME
+      - JUPYTER_ENABLE_LAB
+      - JUPYTER_TOKEN
+      - OPENAI_API_KEY
+      - OPENAI_ORG_ID
+      - DB_ENGINE
+      - DB_USER
+      - DB_PASSWORD
+      - DB_DATABASE
+      - DB_HOST
+      - DB_PORT

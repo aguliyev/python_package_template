@@ -1,15 +1,25 @@
+.PHONY: devsetup
+devsetup:
+	cp git_hooks/pre-push .git/hooks/pre-push
+
+.PHONY: venv
+venv:
+	. etc/dev/.env && \
+	. ./venv/bin/activate && \
+	pip install $$PIP_PARAMS -r requirements.txt
+
 .PHONY: build
 build:
-	docker build -t python_package_template .
-	docker run --env-file ./etc/dev/.env -v `pwd`:/app python_package_template
+	docker compose --env-file ./etc/dev/.env build
+	docker compose --env-file ./etc/dev/.env -v run --rm python_package_template
 
 .PHONY: test
 test:
-	docker run --env-file ./etc/test/.env -v `pwd`:/app -it python_package_template
+	docker compose --env-file ./etc/test/.env run --rm python_package_template
 
 .PHONY: coverage
 coverage:
-	docker run --env-file ./etc/test/.env -e COVERAGE_REPORT=1 -v `pwd`:/app -it python_package_template
+	docker compose --env-file ./etc/test/.env -e COVERAGE_REPORT=1 run --rm python_package_template
 
 .PHONY: publish
 publish:
@@ -17,12 +27,12 @@ publish:
 
 .PHONY: jupyter
 jupyter:
-	docker run --rm -p 8888:8888 -e JUPYTER_ENABLE_LAB=yes -e JUPYTER_TOKEN=123 \
-	    --name python_package_template_jupyter \
-	    -v "$(shell pwd)/docs/notebooks":/home/jovyan/work \
-	    -v "$(shell pwd)":/home/jovyan/python_package_template \
-	    jupyter/datascience-notebook
+	docker compose --env-file ./etc/dev/.env up -d python_package_template_jupyter
 
 .PHONY: shell
 shell:
-	docker exec -it python_package_template_jupyter bash
+	docker exec -it python_package_template bash
+
+.PHONY: stop
+stop:
+	docker compose --env-file ./etc/dev/.env stop
