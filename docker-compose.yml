@@ -6,14 +6,14 @@ networks:
 services:
 
   python_package_template:
-    image: trialspark/python_package_template:${IMAGE_VERSION}
+    image: aguliyev/python_package_template:${IMAGE_VERSION}
     container_name: python_package_template
     build:
       context: .
       dockerfile: package.Dockerfile
       args:
-        - PIP_PARAMS=${PIP_PARAMS}
         - ENV_NAME
+        - PIP_PARAMS
         - AWS_CODEARTIFACT_AUTH_TOKEN
     networks:
       - python_package_template_network
@@ -25,30 +25,28 @@ services:
       - etc/${ENV_NAME}/.env
 
   python_package_template_jupyter:
-    image: trialspark/python_package_template_jupyter
+    image: aguliyev/python_package_template_jupyter
     container_name: python_package_template_jupyter
     build:
       context: .
       dockerfile: jupyter.Dockerfile
       args:
-        - PIP_PARAMS=${PIP_PARAMS}
+        - ENV_NAME
+        - PIP_PARAMS
+        - AWS_CODEARTIFACT_AUTH_TOKEN
     ports:
       - ${JUPYTER_PORT_ON_HOST}:${JUPYTER_PORT}
     networks:
       - python_package_template_network
     volumes:
-      - ./docs/notebooks:/home/jovyan/work
+      - ./docs/notebooks:/home/jovyan/work/notebooks
       - .:/home/jovyan/python_package_template
       - ./tmp:/tmp
     environment:
       - ENV_NAME
       - JUPYTER_ENABLE_LAB
       - JUPYTER_TOKEN
-      - OPENAI_API_KEY
-      - OPENAI_ORG_ID
-      - DB_ENGINE
-      - DB_USER
-      - DB_PASSWORD
-      - DB_DATABASE
-      - DB_HOST
-      - DB_PORT
+      - POSTGRES_USER
+      - POSTGRES_PASSWORD
+      - POSTGRES_DB
+      - POSTGRES_PORT

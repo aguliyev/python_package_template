@@ -19,7 +19,7 @@ test:
 
 .PHONY: coverage
 coverage:
-	docker compose --env-file ./etc/test/.env -e COVERAGE_REPORT=1 run --rm python_package_template
+	docker compose --env-file ./etc/test/.env run -e COVERAGE_REPORT=1 --rm python_package_template
 
 .PHONY: publish
 publish:
